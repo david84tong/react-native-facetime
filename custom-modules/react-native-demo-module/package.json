@@ -1,12 +1,12 @@
 {
   "name": "react-native-demo-module",
   "version": "1.0.0",
-  "description": "React Native Demo Module",
+  "description": "React Native Face time module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "homepage": "https://github.com/oliveteam-developers/react-native-demo-module",
-  "author": "https://github.com/oliveteam-developers",
+  "homepage": "https://github.com/david84tong/react-native-facetime",
+  "author": "https://github.com/david84tong",
   "license": "ISC"
 }

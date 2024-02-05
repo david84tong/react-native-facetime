@@ -1,6 +1,6 @@
 rootProject.name = 'ReactNativeDemo'
-include ':react-native-demo-module'
-project(':react-native-demo-module').projectDir = new File(rootProject.projectDir, '../custom-modules/react-native-demo-module/android')
+include ':react-native-facetime'
+project(':react-native-facetime').projectDir = new File(rootProject.projectDir, '../custom-modules/react-native-facetime/android')
 include ':react-native-linear-gradient'
 project(':react-native-linear-gradient').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-linear-gradient/android')
 include ':react-native-vector-icons'

@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
   s.authors      = package["author"]
 
   s.platforms    = { :ios => "10.0" }
-  s.source       = { :git => "https://github.com/oliveteam-developers/react-native-demo-module.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/david84tong/react-native-facetime.git", :tag => "#{s.version}" }
 
   s.source_files = "ios/**/*.{h,m,mm}"
   

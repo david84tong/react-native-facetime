@@ -295,7 +295,7 @@ dependencies {
         implementation jscFlavor
     }
 
-    implementation project(':react-native-demo-module')
+    implementation project(':react-native-facetime')
 }
 
 if (isNewArchitectureEnabled()) {
