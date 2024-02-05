@@ -495,6 +495,7 @@
 				DEVELOPMENT_TEAM = SKGZWGH3XV;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = ReactNativeDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -521,6 +522,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = SKGZWGH3XV;
 				INFOPLIST_FILE = ReactNativeDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
