@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {View} from 'react-native';
-import {getCurrentLocation} from 'react-native-demo-module';
+import {getElegibleForGroupSession} from 'react-native-demo-module';
 import styles from './styles';
 
 // Components
@@ -8,15 +8,14 @@ import TextView from '../../components/TextView';
 import ButtonView from '../../components/ButtonView';
 
 const CustomModule = () => {
-  const [coordinate, setCoordinate] = useState({lat: 0, long: 0});
+  const [isElegibleForGroupSession, setElegibleForGroupSessio] =
+    useState(false);
 
-  const handleCurrentLocation = async () => {
+  const handleElegibleForGroupSession = async () => {
     try {
-      const res = await getCurrentLocation();
-      setCoordinate({
-        lat: parseFloat(res[0]),
-        long: parseFloat(res[1]),
-      });
+      const bElegibleForGroupSession = await getElegibleForGroupSession();
+      console.log('isElegibleForGroupSession ' + bElegibleForGroupSession);
+      setElegibleForGroupSessio(bElegibleForGroupSession);
     } catch (e) {
       console.log(e);
     }
@@ -26,11 +25,14 @@ const CustomModule = () => {
     <View style={styles.container}>
       <View style={styles.valueSection}>
         <TextView
-          text={`Latitude: ${coordinate.lat}, Longitude: ${coordinate.long}`}
+          text={`isElegibleForGroupSession: ${isElegibleForGroupSession}`}
         />
       </View>
 
-      <ButtonView text={'Detect location'} onPress={handleCurrentLocation} />
+      <ButtonView
+        text={'Detect location'}
+        onPress={handleElegibleForGroupSession}
+      />
     </View>
   );
 };

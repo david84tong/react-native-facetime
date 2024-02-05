@@ -9,18 +9,11 @@ import Foundation
 import Combine
 import GroupActivities
 
-
-protocol GroupActivityHandlerDelegate: AnyObject {
-
-    func connectionChanged()
-}
-
-class GroupActivityHandler: NSObject {
+@objc
+public class GroupActivityHandler: NSObject {
 
     private var groupStateObserver = GroupStateObserver()
-    var isEligibleForGroupSession: Bool = false
-
-    private weak var delegate: GroupActivityHandlerDelegate?
+    @objc public var isEligibleForGroupSession: Bool = false
 
     var canConnect: Bool {
 
@@ -28,15 +21,12 @@ class GroupActivityHandler: NSObject {
     }
 
     private var subscriptions = Set<AnyCancellable>()
-    init(delegate: GroupActivityHandlerDelegate) {
-
-        super.init()
-        self.delegate = delegate
-
+    
+    @objc public func subscriberEligibleForGroupSession( _ withCompletionHandler: @escaping (Bool) -> Void) {
         groupStateObserver.$isEligibleForGroupSession.sink { [weak self] isElegibleForGroupSession in
-
-            self?.delegate?.connectionChanged()
+            
             self?.isEligibleForGroupSession = isElegibleForGroupSession
+            withCompletionHandler(isElegibleForGroupSession)
         }
         .store(in: &subscriptions)
     }
