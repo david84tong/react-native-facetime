@@ -30,7 +30,7 @@ const CustomModule = () => {
       </View>
 
       <ButtonView
-        text={'Detect location'}
+        text={'Detect ElegibleForGroupSession'}
         onPress={handleElegibleForGroupSession}
       />
     </View>
