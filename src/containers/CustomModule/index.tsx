@@ -1,25 +1,28 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View} from 'react-native';
-import {getElegibleForGroupSession} from 'react-native-demo-module';
+import {
+  startEligibleForGroupSession,
+  eligibleForGroupSessionEventEmitter,
+} from 'react-native-demo-module';
 import styles from './styles';
 
 // Components
 import TextView from '../../components/TextView';
-import ButtonView from '../../components/ButtonView';
 
 const CustomModule = () => {
   const [isElegibleForGroupSession, setElegibleForGroupSessio] =
     useState(false);
 
-  const handleElegibleForGroupSession = async () => {
-    try {
-      const bElegibleForGroupSession = await getElegibleForGroupSession();
-      console.log('isElegibleForGroupSession ' + bElegibleForGroupSession);
-      setElegibleForGroupSessio(bElegibleForGroupSession);
-    } catch (e) {
-      console.log(e);
-    }
-  };
+  useEffect(() => {
+    eligibleForGroupSessionEventEmitter().addListener(
+      'onEligibilityChange',
+      event => {
+        console.log('Received event:', event);
+        setElegibleForGroupSessio(event);
+      },
+    );
+    startEligibleForGroupSession();
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -28,11 +31,6 @@ const CustomModule = () => {
           text={`isElegibleForGroupSession: ${isElegibleForGroupSession}`}
         />
       </View>
-
-      <ButtonView
-        text={'Detect ElegibleForGroupSession'}
-        onPress={handleElegibleForGroupSession}
-      />
     </View>
   );
 };

@@ -1,6 +1,5 @@
-#import <React/RCTBridgeModule.h>
-#import <CoreLocation/CoreLocation.h>
+#import <React/RCTEventEmitter.h>
 
-@interface DemoModule : NSObject <RCTBridgeModule>
+@interface DemoModule : RCTEventEmitter
 
 @end

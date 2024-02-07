@@ -1,8 +1,12 @@
 // prettier-ignore
-import { NativeModules } from 'react-native';
+import { NativeModules, NativeEventEmitter } from 'react-native';
 
 const DemoModule = NativeModules.DemoModule;
 
-export function getElegibleForGroupSession() {
-  return DemoModule.getElegibleForGroupSession();
+export function startEligibleForGroupSession() {
+  return DemoModule.subscriberEligibleForGroupSession();
+}
+
+export function eligibleForGroupSessionEventEmitter() {
+  return new NativeEventEmitter(DemoModule);
 }

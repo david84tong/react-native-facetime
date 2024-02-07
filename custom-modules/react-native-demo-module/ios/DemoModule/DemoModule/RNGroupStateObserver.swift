@@ -17,8 +17,8 @@ public class GroupActivityHandler: NSObject {
     
     @objc public func subscriberEligibleForGroupSession( _ withCompletionHandler: @escaping (Bool) -> Void) {
         
-        let isEligibleForGroupSession = groupStateObserver.isEligibleForGroupSession
-        debugPrint(isEligibleForGroupSession)
-        withCompletionHandler(groupStateObserver.isEligibleForGroupSession)
+        groupStateObserver.$isEligibleForGroupSession.sink { isEligibleForGroupSession in
+            withCompletionHandler(isEligibleForGroupSession)
+        }.store(in: &subscriptions)
     }
 }

@@ -5,25 +5,24 @@
     GroupActivityHandler* groupActivityHandler;
 }
 
+RCT_EXPORT_MODULE()
+
 - (id) init {
     groupActivityHandler = [[GroupActivityHandler alloc] init];
     return [super init];
 }
 
-RCT_EXPORT_MODULE()
+- (NSArray<NSString *> *)supportedEvents {
+    return @[@"onEligibilityChange"];
+}
 
-RCT_REMAP_METHOD(getElegibleForGroupSession, resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
-{
-    @try {
-        
-        [groupActivityHandler subscriberEligibleForGroupSession:^(BOOL isElegibleForGroupSession) {
-            resolve([NSNumber numberWithBool:isElegibleForGroupSession]);
-        }];
-    } @catch (NSException *exception) {
-        NSString *error = @"Can not get the current location";
-        reject(@"Error", @"Error description", error);
-    }
+RCT_EXPORT_METHOD(subscriberEligibleForGroupSession) {
+    [groupActivityHandler subscriberEligibleForGroupSession:^(BOOL isElegibleForGroupSession) {
+        [self sendEventWithName:@"onEligibilityChange" body:[NSNumber numberWithBool:isElegibleForGroupSession]];
+    }];
 }
 
 @end
+
+
 
